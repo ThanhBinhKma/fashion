@@ -964,6 +964,9 @@ html {
 	.col-sm-4{
 		flex:0 0 29.7333% !important;
 	}
+	.img-product{
+		height: 75%;
+	}
 	.row{
 		padding-left:  15px !important;
 		padding-right: 15px !important;
@@ -1156,6 +1159,9 @@ html {
 	.row{
 		margin-right: 15px !important;
 		margin-left: 5px !important;
+	}
+	.img-product{
+		height: 77%;
 	}
 	header .lienhe .lienhe-right ul li{
 		padding-right: 20px;
