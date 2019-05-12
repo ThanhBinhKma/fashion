@@ -73,7 +73,7 @@ if($(window).width()>990){
 $(document).ready(function(){
   var a = window.location.href;
   var b = a.slice(22);
-
+  console.log(b);
   if(b === 'san-pham'){
     $('.jq-one').removeClass('click-color-menu');
     $('.jq-two').addClass('click-color-menu');
