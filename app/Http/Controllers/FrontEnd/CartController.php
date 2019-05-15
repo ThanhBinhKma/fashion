@@ -17,6 +17,7 @@ class CartController extends Controller
     		$color = $req->color;
     		$size = $req->size;
     		$infoPd = $pd->GetAllDataProductsById($id);
+
     		if($infoPd && is_numeric($qty)){
     			// tien hanh add vao gio hang
     			Cart::add([

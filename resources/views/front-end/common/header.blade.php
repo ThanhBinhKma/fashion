@@ -155,7 +155,7 @@
 						            <ul class="ul-drop-right ul-hihi-right">
 					                  	<li><a href="{{route('home')}}">Trang chủ</a></li>
 			                            <li><a href="{{route('product')}}">Sản phẩm</a></li>
-			                            <li><a href="#">Tin tức</a></li>
+			                          
 			                            <li><a href="{{route('introduce')}}">Giới thiệu</a></li>
 			                            <li><a href="{{route('contact')}}" >Liên hệ</a></li>
 						            </ul>

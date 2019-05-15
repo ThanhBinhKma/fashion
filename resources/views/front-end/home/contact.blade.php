@@ -46,33 +46,27 @@
 							<div class="row pt-5">
 								<h3 class="text-danger pr-5">Gửi Liên Hệ Về ThanhBinhShop</h3>
 							</div>
-							<form>
+							<form method="post" action="{{route('sentContact')}}">
+								@csrf
 							  <div class="form-group">
 							    <label for="name" class="label-contact">Họ tên:</label>
-							    <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Họ và tên">
+							    <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Họ và tên" name="name">
 							  </div>
-							  <div class="form-group">
-							    <label for="exampleInputPassword1" class="label-contact">Giới Tính :</label>
-							    <br>
-							    <label for="" class="label-contact">Nam</label>
-							    <input type="radio" id="exampleInputPassword1" class="pr-3">
-							    <label for="" class="pl-5 label-contact">Nữ</label>
-							    <input type="radio" id="exampleInputPassword1">
-							  </div>
+							  
 
 							  <div class="form-group">
 							    <label for="name" class="label-contact">Email:</label>
-							    <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Email">
+							    <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Email" name="email">
 							  </div>
 
 							  <div class="form-group">
 							    <label for="name" class="label-contact">Số điện thoại:</label>
-							    <input type="number" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Số điện thoại:">
+							    <input type="number" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Số điện thoại:" name="phone">
 							  </div>
 
 							  <div class="form-group">
 							    <label for="name" class="label-contact">Thông Điệp :</label>
-							    <textarea class="form-control"></textarea>
+							    <textarea class="form-control" name="message"></textarea>
 							  </div>
 							  
 							  <button type="submit" class="btn btn-primary">Send</button>

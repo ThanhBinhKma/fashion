@@ -46,12 +46,20 @@ Route::group([
 	Route::get('edit-product/{id}','ProductController@edit')->name('editProduct');
 	Route::post('handle-edit-product/{id}','ProductController@handleEdit')->name('handleEditProducts');
 
-	/*************** Product ********/
-	Route::get('color','ColorController@index')->name('color');
-	Route::get('add-color','ColorController@add')->name('addColor');
-	Route::post('handle-add-color','ColorController@handleAdd')->name('handleEdit');
-	Route::post('delete-color','ColorController@delete')->name('deleteColor');
-
+	/*************** Brand ********/
+	Route::get('brand','BrandController@index')->name('brand');
+	Route::get('add-brand','BrandController@add')->name('addBrand');
+	Route::post('handle-add-brand','BrandController@handleAdd')->name('handleAddBrand');
+	Route::post('delete-brand','BrandController@delete')->name('deleteBrand');
+	Route::get('edit-brand','BrandController@edit')->name('editBrand');
+	Route::post('handle-edit-brand,{id}','BrandController@handleEdit')->name('handleEditBrand');
+	/************** Categories ************/
+	Route::get('categories','CategoriesController@index')->name('categories');
+	Route::post('delete-categories','CategoriesController@delete')->name('deleteCategories');
+	Route::get('add-categories','CategoriesController@add')->name('addCategories');
+	Route::post('handle-add-categories','CategoriesController@handleadd')->name('handleAddCategories');
+	Route::get('edit-categories','CategoriesController@edit')->name('editCategories');
+	Route::post('handle-edit-categories/{id}','CategoriesController@handleEdit')->name('handleEditCategories');
 	/********* Bill *************/
 	Route::get('bill','BillController@index')->name('bill');
 });
@@ -66,7 +74,11 @@ Route::group([
 ],function(){
 	Route::get('/','HomeController@index')->name('home');
 	Route::get('lien-he','HomeController@contact')->name('contact');
+
+	Route::post('gui-lien-he','HomeController@sendContact')->name('sentContact');
+
 	Route::get('gioi-thieu','HomeController@introduce')->name('introduce');
+
 	Route::get('chi-tiet-san-pham/{id}','HomeController@detail')->name('detail');
 	
 	Route::get('danh-muc-cac-san-pham/{id}','HomeController@allProduct')->name('allProduct');

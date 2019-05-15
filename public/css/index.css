@@ -323,7 +323,7 @@ ul.sub-menu-ul{
 }
 
 .img-product{
-	height: 80%;
+	height: 78%;
 	width: 100%;
 	overflow: hidden;
 }
@@ -469,7 +469,320 @@ footer h3 {
 	padding-right: 15px;
 }
 		/*End footer*/
-@media(min-width: 320px) and (max-width: 480px){
+@media(max-width: 350px){
+	.lienhe-right,.lienhe-left{
+		padding:  0 !important;
+	}
+	.product-content span{
+		width: 30% !important;
+	}
+	html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: helvetica, sans-serif;
+	}
+	.container{
+		padding: 0 !important;
+	}
+	.row{
+		margin: 0 !important;
+	}
+	header .lienhe .lienhe-left p{
+		font-size: 14px;
+	}
+	header .lienhe .lienhe-left p i{
+		padding-right: 2px;
+	}
+	header .lienhe .lienhe-right ul li i{
+		padding-right: 2px;
+	}
+	header .lienhe .lienhe-right ul li{
+		padding-right: 10px;
+	}
+	.phone-none{
+		display: none !important;
+	}
+	.mobile-show{
+		display: block !important;
+	}
+	.header li.menu-cha{
+		width: 50% !important;
+		margin-right: 0 ;
+	}
+	.hien-menu-header{
+		border-left: none;
+		border-right: none;
+	}
+	.mob-i{
+		padding: 15px;
+		font-size: 25px !important;
+		color: #ffff !important;
+	}
+	ul.ul-drop-left{
+	      margin: 0;
+	      padding: 0;
+	      list-style-type: none;
+	      background: #ff5400;
+	      position: static;
+	      display: none;
+	      padding-top: 15%;
+	      width: 130%;
+	}
+
+	ul.ul-drop-left li {
+	      display:block;
+	     /* height: 40px;*/
+	}
+
+	ul.ul-drop-left li a {
+	      color: #292929 !important;
+	      text-decoration: none;
+	      padding: 15px;
+	      display: block;
+	}
+
+	ul.sub-ul-drop-left{
+	      position: static;
+	      /*min-width: 200px;*/
+	      background: #fff;
+	      padding-top: 0 !important;
+	      display: none;
+	      color #333333 !important;
+	}
+
+	ul.ul-drop-left ul.sub-ul-drop-left li {
+	      display: block;
+	      background: #e3e3e3;
+	      width: 80%;
+	}
+
+	ul.ul-drop-left li i {
+	      color: #ffffff;
+	      float: right;
+	      /*padding-left: 20px;*/
+	      padding-top: 5%;
+	}
+
+	nav.menu-drop-left div {
+	      /*color: #292929;
+	      font-size: 24px;*/
+	      cursor: pointer;
+	      display: block;
+	      width: 100%;
+	}
+	nav.menu-drop-left div i{
+		float: left;
+		font-size: 28px;
+		color: #ffffff;
+		padding-top: 5%;
+	}
+
+/*Right*/
+	ul.ul-drop-right{
+	      margin: 0;
+	      padding: 0;
+	      list-style-type: none;
+	      background: #ff5400;
+	      position: static;
+	      display: none;
+	      padding-top: 15%;
+	}
+
+	ul.ul-drop-right li {
+	      display:block;
+	     /* height: 40px;*/
+	}
+	ul.ul-drop-right ul.sub-ul-drop-right li {
+	      display: block;
+	      background: #e3e3e3;
+	}
+	ul.ul-drop-right li a {
+	      color: #292929 !important;
+	      text-decoration: none;
+	      padding: 15px;
+	      display: block;
+	}
+	ul.ul-drop-right li i {
+	      color: #ffffff;
+	      float: right;
+	      /*padding-left: 20px;*/
+	      padding-top: 5%;
+	}
+
+	nav.menu-drop-right div {
+	      /*color: #292929;
+	      font-size: 24px;*/
+	      cursor: pointer;
+	      display: block;
+	      width: 100%;
+	}
+	nav.menu-drop-right div i{
+		float: right;
+		font-size: 28px;
+		color: #ffffff;
+		padding-top: 5%;
+	}
+	#mob-i-left{
+		float: left;
+	}
+	#mob-i-right{
+		float: right;
+	}
+/*Func*/
+
+html {
+      font-family: "Poppins";
+	}
+
+	body {
+	      margin: 0;
+	      padding: 0;
+	}
+
+	ul.ul-drop-left{
+	      margin: 0;
+	      padding: 0;
+	      list-style-type: none;
+	      background: #ff5400;
+	      position: static;
+	      display: none;
+	      padding-top: 15%;
+	}
+
+	ul.ul-drop-left li {
+	      display:block;
+	     /* height: 40px;*/
+	}
+
+	ul.ul-drop-left li a {
+	      color: #292929 !important;
+	      text-decoration: none;
+	      padding: 10px;
+	      display: block;
+	}
+
+	ul.sub-ul-drop-left{
+	      position: static;
+	      /*min-width: 200px;*/
+	      background: #fff;
+	      padding-top: 0 !important;
+	      display: none;
+	      color #333333 !important;
+	}
+
+	ul.ul-drop-left ul.sub-ul-drop-left li {
+	      display: block;
+	      background: #e3e3e3;
+	}
+
+	ul.ul-drop-left li i {
+	      color: #ffffff;
+	      float: right;
+	      /*padding-left: 20px;*/
+	      padding-top: 5%;
+	}
+
+	nav.menu-drop-left div {
+	      /*color: #292929;
+	      font-size: 24px;*/
+	      cursor: pointer;
+	      display: block;
+	      width: 100%;
+	}
+	nav.menu-drop-left div i{
+		float: left;
+		font-size: 28px;
+		color: #ffffff;
+		padding-top: 5%;
+	}
+
+/*Right*/
+	ul.ul-drop-right{
+	      margin: 0;
+	      padding: 0;
+	      list-style-type: none;
+	      background: #ff5400;
+	      position: static;
+	      display: none;
+	      padding-top: 15%;
+	}
+
+	ul.ul-drop-right li {
+	      display:block;
+	     /* height: 40px;*/
+	}
+	ul.ul-drop-right ul.sub-ul-drop-right li {
+	      display: block;
+	      background: #e3e3e3;
+	}
+	ul.ul-drop-right li a {
+	      color: #292929 !important;
+	      text-decoration: none;
+	      padding: 15px;
+	      display: block;
+	}
+	ul.ul-drop-right li i {
+	      color: #ffffff;
+	      float: right;
+	      /*padding-left: 20px;*/
+	      padding-top: 5%;
+	}
+
+	nav.menu-drop-right div {
+	      /*color: #292929;
+	      font-size: 24px;*/
+	      cursor: pointer;
+	      display: block;
+	      width: 100%;
+	}
+	nav.menu-drop-right div i{
+		float: right;
+		font-size: 28px;
+		color: #ffffff;
+		padding-top: 5%;
+	}
+
+	.content-slide{
+		padding: 0 !important;
+	}
+	.content .content-slide{
+		height: 230px;
+	}
+	.chuyenslide{
+		left: 45%;
+	}
+	.product-content span{
+		width: 44%;
+	}
+	.col-12{
+		max-width: 100% !important;
+	}
+	.icon-i-hien{
+		opacity: 1 !important;
+		 -webkit-transition: width 1s; /* For Safari 3.1 to 6.0 */
+  		transition: width 0.4s;
+	}
+	.footer-tren ul li{
+		margin-left: 10px;
+		height: 40px;
+		width: 40px;
+	}
+	.footer-duoi ul li{
+		line-height: 30px;
+	}
+	.footer-tren ul li a{
+		padding-left: 3px;
+		top: 11%;
+	}
+	.title h4{
+		padding-top: 10px;
+	}
+	label.pl-5{
+		padding-left: 0 !important;
+	}
+}
+@media(min-width: 351px) and (max-width: 480px){
 
 	html, body {
     width: 100%;
@@ -964,8 +1277,11 @@ html {
 	.col-sm-4{
 		flex:0 0 29.7333% !important;
 	}
+	.product-size{
+		height: 380px;
+	}
 	.img-product{
-		height: 75%;
+		height: 67%;
 	}
 	.row{
 		padding-left:  15px !important;

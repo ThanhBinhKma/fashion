@@ -77,7 +77,10 @@ class Product extends Model
 
     public function GetAllProductNew()
     {
-        $data = Product::where('new',1)->paginate(8);
+        $data = Product::select('*')
+                    ->orderByRaw('created_at')
+                    ->take(5)
+                    ->get();
         return $data;
     }
 

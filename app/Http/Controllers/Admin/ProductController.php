@@ -6,13 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EditProduct;
 use App\Model\Product;
-use App\Model\Color;
 use App\Model\Categories;
 use App\Model\Brand;
 
 class ProductController extends Controller
 {
-	public function index(Product $pd,Color $color )
+	public function index(Product $pd)
 	{
 		$data = [];
 
@@ -21,36 +20,23 @@ class ProductController extends Controller
 		$arr = ($infoPd) ? $infoPd->toArray() : 0;
 		$data['infoPd'] = $arr['data'];
     // dd($data['infoPd']);
-		$data['color']= $color->GetAllDataColor();
 
 
 		$data['link']=$infoPd;
 		// dd($data['infoPd']);
 		foreach($data['infoPd'] as $key =>$item){
-			$data['infoPd'][$key]['color_id']=json_decode($item['color_id'],true);
 			$data['infoPd'][$key]['url_image']=json_decode($item['url_image'],true);
       $data['infoPd'][$key]['size']=json_decode($item['size'],true);
       // dd($data['infoPd'][$key]['sizeNumber_id']);
-
 		}
 		// dd($data['color']);
-		foreach ($data['infoPd'] as $key => $item) {
-			foreach($data['color'] as $k => $val){
-				if(in_array($val['id'], $item['color_id'])){
-					$data['infoPd'][$key]['color_id']['color'][]=$val['name_color'];
-				}
-			}
-		}
 		// dd($data['infoPd']);
 		return view('admin.product.index',$data);
 	}
 
-	public function add(Product $pd,Color $color,Categories $cate,Brand $brand)
+	public function add(Product $pd,Categories $cate,Brand $brand)
 	{
 		$data = [];
-
-		$data['color']=$color->GetAllDataColor();
-
 		$data['categories']=$cate->GetAllDataCategories();
 
 		$data['brand']=$brand->GetAllDataBrand();
@@ -70,7 +56,6 @@ class ProductController extends Controller
        $saleOff = $check->saleOff;
        $status = $check->status;
        $desription=$check->desription;
-       $new = $check->new;
        $highlight= $check->highlight;
        // $ddd = $check->image;
        // // s
@@ -98,11 +83,10 @@ class ProductController extends Controller
             $dataInsert = [
                 'name'=>$name,
                 'brand_id'=>$brands,
-                'color_id'=>json_encode($color),
+                'color'=>$color,
                 
                 'categories_id'=>$cate,
                 'size'=>json_encode($size),
-                'new'=>$new,
                 'price'=>$price,
                 'quantity'=>$qty,
                 'sale_off'=>$saleOff,
@@ -145,25 +129,21 @@ class ProductController extends Controller
         }
     }
 
-    public function edit($id,Product $pd,Color $color, Categories $cate,Brand $brand)
+    public function edit($id,Product $pd, Categories $cate,Brand $brand)
     {
     	$id = is_numeric($id) ? $id : 0;
         $infoPd = $pd->GetAllDataProductsById($id);
         // dd($infoPd );
         if($infoPd){
             $data = [];
-
-            $data['color'] =$color->getAllDataColor();
-
             $data['cates'] = $cate->getAllDataCategories();
 
             $data['brand'] = $brand->getAllDataBrand();
 
             $data['info']= $infoPd;
-            $data['infoColor']=json_decode($infoPd['color_id'],true);
             $data['infoImage']=json_decode($infoPd['url_image'],true);
             $data['infoSize']=json_decode($infoPd['size'],true);
-            // dd($data['infoSize']);
+            // dd($data['info']);
             return view('admin.product.edit',$data);
 
         }

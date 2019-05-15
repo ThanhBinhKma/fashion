@@ -38,12 +38,43 @@ class Categories extends Model
         $data = Categories::select('id')->where('id_parent',$id)->get()->toArray();
         return $data;
     }
-
+    public function GetAllDataCategorisById($id)
+    {
+         $query = Categories::find($id);
+        return $query;
+    }
     public function GetAllIdCategoriesById($id)
     {
         $data = Categories::find($id);
         return $data;
     }
-   
+    public function GetAllCategories()
+    {
+        $query = Categories::select('*')->paginate(5);
+        return $query;
+    }
 
+    public function DeleteCategoriesById($id)
+    {
+        $del = DB::table('categories')
+                    ->where('id',$id)
+                    ->delete();
+        return $del;
+    }
+   public function InsertDataCategories($data)
+   {
+    $arr  = Categories::insert($data);
+        if($arr){
+            return true;
+        }
+        return false;
+   }
+
+   public function UpdateDataCategories($data,$id)
+   {
+     $up = DB::table('categories')
+                    ->where('id',$id)
+                    ->update($data);
+        return $up;
+   }
 }

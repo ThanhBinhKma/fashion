@@ -29,6 +29,21 @@ $(".menu-drop-left div").click(function() {
                   $(".ul-hihi-left").removeAttr('style');
             }
  });
+// $(".menu-drop-right div").click(function() {
+//             $(".ul-hihi-right").slideToggle();
+//             $(".sub-ul-drop-right").css("display", "none");
+//   });
+
+//       $(".ul-hihi-right li").click(function() {
+//             $(".sub-ul-drop-right").slideUp();
+//             $(this).find('.sub-ul-drop-right').slideToggle();
+//       });
+
+//       $(window).resize(function() {
+//             if($(window).width() > 768) {
+//                   $(".ul-hihi-right").removeAttr('style');
+//             }
+//  });
 
 $(".menu-drop-right div").click(function() {
     $(".ul-hihi-right").slideToggle();
@@ -73,7 +88,8 @@ if($(window).width()>990){
 $(document).ready(function(){
   var a = window.location.href;
   var b = a.slice(22);
-  console.log(b);
+  var c = a.length;
+  console.log(c);
   if(b === 'san-pham'){
     $('.jq-one').removeClass('click-color-menu');
     $('.jq-two').addClass('click-color-menu');
@@ -86,6 +102,8 @@ $(document).ready(function(){
     $('.jq-one').removeClass('click-color-menu');
     $('.jq-four').addClass('click-color-menu');
   }
-  
+  if(c>22){
+     $('.jq-one').removeClass('click-color-menu');
+  }
 });
 }

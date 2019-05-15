@@ -56,4 +56,8 @@ class PaymentController extends Controller
         }
         
     }
+    public function BuyNow(Request $req,Product $pd)
+    {
+        $name = $req->
+    }
 }

@@ -49,9 +49,8 @@
           </td>
 
           <td>
-          @foreach($item['color_id']['color'] as $nameColor)
-            <p>{{$nameColor}}</p>
-          @endforeach
+            
+          {{$item['color']}}
           </td>
 
           <td>
@@ -61,9 +60,14 @@
            
 
         <td>
-          @foreach($item['size'] as $name)
-          <p>{{$name}}</p>
-          @endforeach
+          @if($item['size'])
+            @foreach($item['size'] as $name)
+            <p>{{$name}}</p>
+            @endforeach
+          
+          @else
+            <p>NULL</p>
+          @endif
         </td>
           
          
@@ -74,7 +78,6 @@
           <td>{{$item['price']}}</td>
           <td>{{$item['quantity']}}</td>
           <td>{{$item['sale_off']}}</td>
-          <td>{{$item['new']}}</td>
           <td>{{$item['highlight']}}</td>
           
           <td>

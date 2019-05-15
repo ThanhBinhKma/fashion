@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-	<form action="{{ route('admin.handleEditProducts',['id'=>$info['id']]) }}" method="POST" enctype="multipart/form-data"> 
+	<form action="{{ route('admin.handleEditProducts',['id'=>$info['id']]) }}" method="POST" enctype="multipart/form-data" class="pt-5"> 
 		@csrf
 		<div class="row">
 			
@@ -38,15 +38,16 @@
 								 value="{{ $info['name'] }}" 	
 					      		 >
 					    </div>
-					    <div class="form-group col-md-9 col-12 float-left">
+					    <div class="form-group col-md-9 col-sm-12 col-12 float-left">
 					    	<h4 class="text-danger">Categories</h4>
 					    	@foreach($cates as $key => $item)
-					    		<div class="col-3 float-left">
-							      	<label for="categories">{{ $item['name_categories'] }}</label>
+					    		<div class="col-12 col-sm-12 col-md-3 float-left">
+							      	<label for="categories_{{$item['id']}}">{{ $item['name_categories'] }}</label>
 							      	<input type="radio" 
 							      	class="float-right mr-5" 
 							      	name="cate" 
 							      	value="{{ $item['id'] }}"
+							      	id="categories_{{$item['id']}}" 
 							      	multiple
 							      	{{ $item['id'] === $info['categories_id'] ? 'checked' : ''}} >
 							    </div>
@@ -54,7 +55,7 @@
 					      	
 					    </div>
 
-					    <div class="form-group col-md-3 col-12 float-left">
+					    <div class="form-group col-md-3 col-12 col-sm-12 float-left">
 						    <h4 class="text-danger">Brand</h4>
 						    <select class="form-control" name="brands">
 							      		@foreach($brand as $key =>$item)
@@ -66,105 +67,169 @@
 						 </div>
 				  <div class="form-group col-md-4 col-12 float-left">
 				  	<h4 class="text-danger">Color</h4>
-				  	<div class=" col-3">
-					  	@foreach($color as $key =>$item)
-
-						    
-								  <input class="form-check-input"
-								  		 type="checkbox" 
-								  		 name="color[]" 
-								  		 id="{{ $item['name_color'] }}" 
-								  		 value="{{ $item['id'] }}" 
-								  		 multiple
-								  		 {{ in_array($item['id'],$infoColor) ? 'checked' : ''}}>
-
-								  <label class="form-check-label" for="{{ $item['name_color'] }}">
-								    {{ $item['name_color'] }}
-								  </label>
-								  <br>
-							
-						@endforeach
-					</div>
+				  	@if($info['color'])
+				  		<input type="text" value="{{$info['color']}}" name="color">
+				  	@else
+				  		<input type="text" name="color">
+				  	@endif
 				  </div>
 				 
 				 <div class="form-group col-md-8">
 				  	<h4 class="pl-5 text-danger">Size</h4>
-				  	<div class="col-3 pl-5 col-12 float-left">
-					  	<input type="checkbox" 
-					  			id="XS" 
-					  			name="size[]" 
-					  			{{in_array('XS',$infoSize) ? 'checked' :''}} 
-					  			value="XS" 
-					  			multiple>
-					  	<label for="XS">XS</label>
-					  	<br>
+				  	@if($infoSize)
+					  	<div class="col-3 pl-5 col-12 float-left">
+						  	<input type="checkbox" 
+						  			id="XS" 
+						  			name="size[]" 
+						  			{{in_array('XS',$infoSize) ? 'checked' :''}} 
+						  			value="XS" 
+						  			multiple>
+						  	<label for="XS">XS</label>
+						  	<br>
 
-					  	<input type="checkbox" 
-					  			id="S" 
-					  			name="size[]" 
-					  			{{in_array('S',$infoSize) ? 'checked' :''}}
-					  			value='S' multiple> 
-					  	<label for="S">S</label>
-						<br>
-					  	<input type="checkbox" id="M" name="size[]" 
-					  			value='M' 
-								{{in_array('M',$infoSize) ? 'checked' :''}}
-					  			multiple>
-					  	<label for="M">M</label>
-					  	<br>
+						  	<input type="checkbox" 
+						  			id="S" 
+						  			name="size[]" 
+						  			{{in_array('S',$infoSize) ? 'checked' :''}}
+						  			value='S' multiple> 
+						  	<label for="S">S</label>
+							<br>
+						  	<input type="checkbox" id="M" name="size[]" 
+						  			value='M' 
+									{{in_array('M',$infoSize) ? 'checked' :''}}
+						  			multiple>
+						  	<label for="M">M</label>
+						  	<br>
 
-					  	<input type="checkbox" id="L" name="size[]" 
-								{{in_array('L',$infoSize) ? 'checked' :''}}
-					  			value='L' multiple>
-					  	<label for="L">L</label>
-					  	<br>
+						  	<input type="checkbox" id="L" name="size[]" 
+									{{in_array('L',$infoSize) ? 'checked' :''}}
+						  			value='L' multiple>
+						  	<label for="L">L</label>
+						  	<br>
 
-					  	<input type="checkbox" id="XL" name="size[]" 
-					  			value='XL' 
-								{{in_array('XL',$infoSize) ? 'checked' :''}}
-					  			multiple>
-					  	<label for="XL">XL</label>
-					  	<br>
+						  	<input type="checkbox" id="XL" name="size[]" 
+						  			value='XL' 
+									{{in_array('XL',$infoSize) ? 'checked' :''}}
+						  			multiple>
+						  	<label for="XL">XL</label>
+						  	<br>
 
-					  	<input type="checkbox" id="XXL" name="size[]" value='XXL' {{in_array('XXL',$infoSize) ? 'checked' :''}} multiple>
-					  	<label for="XXL">XXL</label>
-				  	</div>
-				  	<div class="col-3 pl-5 col-12 float-left">
-					  	<input type="checkbox" id="XS" name="size[]" {{in_array(25,$infoSize) ? 'checked' :''}} value='25' multiple>
-					  	<label for="XS">25</label>
-					  	<br>
+						  	<input type="checkbox" id="XXL" name="size[]" value='XXL' {{in_array('XXL',$infoSize) ? 'checked' :''}} multiple>
+						  	<label for="XXL">XXL</label>
+				  		</div>
+					  	<div class="col-3 pl-5 col-12 float-left">
+						  	<input type="checkbox" id="XS" name="size[]" {{in_array(25,$infoSize) ? 'checked' :''}} value='25' multiple>
+						  	<label for="25">25</label>
+						  	<br>
 
-					  	<input type="checkbox" id="S" name="size[]" {{in_array(26,$infoSize) ? 'checked' :''}} value='26' multiple>
-					  	<label for="S">26</label>
-						<br>
-					  	<input type="checkbox" id="M" name="size[]" {{in_array('27',$infoSize) ? 'checked' :''}} value='27' multiple>
-					  	<label for="M">27</label>
-					  	<br>
+						  	<input type="checkbox" id="26" name="size[]" {{in_array(26,$infoSize) ? 'checked' :''}} value='26' multiple>
+						  	<label for="26">26</label>
+							<br>
+						  	<input type="checkbox" id="27" name="size[]" {{in_array('27',$infoSize) ? 'checked' :''}} value='27' multiple>
+						  	<label for="27">27</label>
+						  	<br>
 
-					  	<input type="checkbox" id="L" name="size[]" {{in_array('28',$infoSize) ? 'checked' :''}} value='28' multiple>
-					  	<label for="L">28</label>
-					  	<br>
+						  	<input type="checkbox" id="28" name="size[]" {{in_array('28',$infoSize) ? 'checked' :''}} value='28' multiple>
+						  	<label for="28">28</label>
+						  	<br>
 
-					  	<input type="checkbox" id="XL" name="size[]" {{in_array('29',$infoSize) ? 'checked' :''}} value='29' multiple>
-					  	<label for="XL">29</label>
-					  	<br>
+						  	<input type="checkbox" id="29" name="size[]" {{in_array('29',$infoSize) ? 'checked' :''}} value='29' multiple>
+						  	<label for="29">29</label>
+						  	<br>
 
-					  	<input type="checkbox" id="XXL" name="size[]" {{in_array('30',$infoSize) ? 'checked' :''}} value='30' multiple> 
-					  	<label for="XXL">30</label>
-				  	</div>
-				  	<div class="col-3 pl-5 col-12 float-left">
-					  	<input type="checkbox" id="XS" name="size[]" {{in_array('31',$infoSize) ? 'checked' :''}} value='31' multiple>
-					  	<label for="XS">31</label>
-					  	<br>
+						  	<input type="checkbox" id="30" name="size[]" {{in_array('30',$infoSize) ? 'checked' :''}} value='30' multiple> 
+						  	<label for="30">30</label>
+					  	</div>
+					  	<div class="col-3 pl-5 col-12 float-left">
+						  	<input type="checkbox" id="31" name="size[]" {{in_array('31',$infoSize) ? 'checked' :''}} value='31' multiple>
+						  	<label for="31">31</label>
+						  	<br>
 
-					  	<input type="checkbox" id="S" name="size[]"  {{in_array('32',$infoSize) ? 'checked' :''}} value='32' multiple>
-					  	<label for="S">32</label>
-						<br>
-					  	<input type="checkbox" id="M" name="size[]" {{in_array('33',$infoSize) ? 'checked' :''}} value='33' multiple>
-					  	<label for="M">33</label>
-					  	
-				  	</div>
-				  </div>
+						  	<input type="checkbox" id="32" name="size[]"  {{in_array('32',$infoSize) ? 'checked' :''}} value='32' multiple>
+						  	<label for="32">32</label>
+							<br>
+						  	<input type="checkbox" id="33" name="size[]" {{in_array('33',$infoSize) ? 'checked' :''}} value='33' multiple>
+						  	<label for="33">33</label>
+						  	
+					  	</div>
+					@else
+						<div class="col-3 pl-5 col-12 float-left">
+						  	<input type="checkbox" 
+						  			id="XS" 
+						  			name="size[]" 
+						  		
+						  			value="XS" 
+						  			multiple>
+						  	<label for="XS">XS</label>
+						  	<br>
+
+						  	<input type="checkbox" 
+						  			id="S" 
+						  			name="size[]" 
+						  			
+						  			value='S' multiple> 
+						  	<label for="S">S</label>
+							<br>
+						  	<input type="checkbox" id="M" name="size[]" 
+						  			value='M' 
+									
+						  			multiple>
+						  	<label for="M">M</label>
+						  	<br>
+
+						  	<input type="checkbox" id="L" name="size[]" 
+									
+						  			value='L' multiple>
+						  	<label for="L">L</label>
+						  	<br>
+
+						  	<input type="checkbox" id="XL" name="size[]" 
+						  			value='XL' 
+									
+						  			multiple>
+						  	<label for="XL">XL</label>
+						  	<br>
+
+						  	<input type="checkbox" id="XXL" name="size[]" value='XXL' multiple>
+						  	<label for="XXL">XXL</label>
+				  		</div>
+					  	<div class="col-3 pl-5 col-12 float-left">
+						  	<input type="checkbox" id="25" name="size[]" value='25' multiple>
+						  	<label for="25">25</label>
+						  	<br>
+
+						  	<input type="checkbox" id="26" name="size[]" value='26' multiple>
+						  	<label for="26">26</label>
+							<br>
+						  	<input type="checkbox" id="27" name="size[]" value='27' multiple>
+						  	<label for="27">27</label>
+						  	<br>
+
+						  	<input type="checkbox" id="28" name="size[]" value='28' multiple>
+						  	<label for="28">28</label>
+						  	<br>
+
+						  	<input type="checkbox" id="29" name="size[]" value='29' multiple>
+						  	<label for="29">29</label>
+						  	<br>
+
+						  	<input type="checkbox" id="30" name="size[]" value='30' multiple> 
+						  	<label for="30">30</label>
+					  	</div>
+					  	<div class="col-3 pl-5 col-12 float-left">
+						  	<input type="checkbox" id="31" name="size[]" value='31' multiple>
+						  	<label for="31">31</label>
+						  	<br>
+
+						  	<input type="checkbox" id="32" name="size[]" value='32' multiple>
+						  	<label for="32">32</label>
+							<br>
+						  	<input type="checkbox" id="33" name="size[]" value='33' multiple>
+						  	<label for="33">33</label>
+						  	
+					  	</div>
+					@endif
+				</div>
 
 
 			    <div class="form-group col-12 col-md-4">
@@ -220,23 +285,7 @@
 							  </label>
 						</div>
 				    </div>
-				    <div class="form-group col-12 col-md-4 pl-5 ">
-				      	<h4 class="text-danger">New</h4>
-				      	<div class="form-check">
-						  <input class="form-check-input" type="radio" name="new" id="new_1" value="1" {{($info['new'] === 1) ? 'checked' : ''}}> 
-						  <label class="form-check-label" for="new_1">
-						    1
-						  </label>
-						</div>
-
-
-						<div class="form-check">
-							  <input class="form-check-input" type="radio" name="new" id="new_2" value="0" {{($info['new'] === 0) ? 'checked' : ''}} >
-							  <label class="form-check-label" for="new_2">
-							    0
-							  </label>
-						</div>
-				    </div>
+				   
 
 				    <div class="form-group col-12 col-md-4 pl-5 ">
 				      	<h4 class="text-danger">Highlight</h4>

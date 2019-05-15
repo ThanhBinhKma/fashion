@@ -27,7 +27,8 @@ class LoginController extends Controller
             $request->session()->put('id',$infoAd['id']);
             $request->session()->put('email',$infoAd['email']);
             // dd($data);
-    		return redirect()->route('admin.dashboard');
+    		// return redirect()->route('admin.dashboard');
+            return view('admin.dashboard.index',$infoAd);
     	}
     	// $data['admin']=$infoAd->toArray();
     	// dd($infoAd);
@@ -39,11 +40,11 @@ class LoginController extends Controller
     	
     	return redirect()->route('admin.login');
     }
-    public function logout()
+    public function logout(Request $request)
     {
-        // $request->session()->forget('user');
-        // $request->session()->forget('id');
-        // $request->session()->forget('email');
+        $request->session()->forget('user');
+        $request->session()->forget('id');
+        $request->session()->forget('email');
 
         return redirect()->route('admin.login');
     }

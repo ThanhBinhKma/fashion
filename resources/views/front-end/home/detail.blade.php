@@ -13,7 +13,7 @@
 	    width: 80%;
 	    left: 24%;
 	    position: absolute;
-	    top: 66%;
+	    top: 75%;
 	}
 	span.color{
 		width: 12px;
@@ -108,25 +108,29 @@
 								<span>{{ $info['price']-($info['price'] * ($info['sale_off']/100)) }}.000 VNĐ</span></p>
 							<p>Tình trạng :
 								@if($info['status']===1)
-									Còn hàng
+									<span class="stt">Còn hàng</span>
 									@else
-									Hết hàng
+									<span class="stt">Hết hàng</span>
 								@endif
 							</p>
 							<p>Mô tả : 
 								{{$info['description']}}
 							</p>
-							<div class="row">
-							<div class="col-12 col-md-6">
+						<div class="row">
+							<div class="col-12 col-md-6 colorNullNone">
 								<p>Màu Sắc :</p>
-								@foreach($color as $key)
-									<label for="color_{{$key['id']}}" class="rel-color pr-5 label-contact" >
-									<input type="radio" id="color_{{$key['id']}}" name="inlineRadioOptionsColor"  value="{{$key['id']}}">
-									<span class="color pr-2" style="background-color:">{{$key['name_color']}} 
+							@if($color)
+								@foreach($color as $key =>$item)
+									<label for="color_{{$key}}" class="rel-color pr-5 label-contact" >
+									<input type="radio" id="color_{{$key}}" name="inlineRadioOptionsColor"  value="{{$item}}">
+									<span class="color pr-2">{{$item}} 
 									</span>
 									</label>
 									<br>
 								@endforeach
+							@else
+								<p class="ColorNull">Sản phẩm này không có màu</p>
+							@endif
 							</div>
 							<div class="col-12 col-md-6">
 								<label for="qty" class="label-contact" >Số lượng</label>
@@ -138,23 +142,27 @@
 							</div>
 							</div>
 
-							<div class="row pb-5">
+							<div class="row pb-5 sizeNullNone">
 								<div class="col-12 col-md-6">
 									<p>Size:</p>
-									@foreach($infoSize as $key)
-										<label for="size_{{$key}}" class="rel-color pr-5 label-contact" >
-										<input type="radio" id="size_{{$key}}" name="inlineRadioOptionsSize"  value="{{$key}}">
-										<span class="color">{{$key}}</span>
-										</label>
-										<br>
-									@endforeach
+									@if($infoSize)
+										@foreach($infoSize as $key)
+											<label for="size_{{$key}}" class="rel-color pr-5 label-contact" >
+											<input type="radio" id="size_{{$key}}" name="inlineRadioOptionsSize"  value="{{$key}}">
+											<span class="color">{{$key}}</span>
+											</label>
+											<br>
+										@endforeach
+									@else
+										<p class="sizeNull">Sản phẩm này không có size</p>
+									@endif
 								</div>
 								
 							
 							</div>
 							
-							<button class="btn  btn-success btn-add mr-5">ADD CART</button>	
-							<a href="" class="btn btn-danger text-white">BUY NOW</a>	
+							<button class="btn btn-block  btn-success btn-add mr-5">ADD CART</button>	
+								
 						</div>
 					</div>
 					<div class="row product-as pt-5">
@@ -223,31 +231,45 @@
 	  		let qty = $('#qtyPd').val();
 	  		let idColor  = $('input[name="inlineRadioOptionsColor"]:checked').next().text().trim();
 	  		let idSize  = $('input[name="inlineRadioOptionsSize"]:checked').next().text().trim();
-	  		alert(idSize);
-	  		alert(idColor);
-	  		if($.isNumeric(IdPd)){
-	  			$.ajax({
-	  				headers: {
-				          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-					},
-	  				url: "{{ route('Cart') }}",
-	  				type: "POST" ,
-	  				data:{id:IdPd,qty:qty,color:idColor,size:idSize},
-	  				beforeSend:function(){
-	  					self.text('Adding To Cart ...');
-	  				},
-	  				success: function(result){
-						self.text('ADD SUCCESS');
-						result = $.trim(result);
-						if(result === 'OK') {
-							alert('add cart successful');
-						} else {
-							alert('can not add cart');
+	  		let ttSp = $('.stt').text().trim();
+	  		if(ttSp === 'Hết hàng'){
+	  			alert('Xin lỗi sản phẩm đã hết hàng . Quý khách vui lòng chọn sản phẩm khác');
+	  		}else{
+		  		if($.isNumeric(IdPd)){
+		  			$.ajax({
+		  				headers: {
+					          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+						},
+		  				url: "{{ route('Cart') }}",
+		  				type: "POST" ,
+		  				data:{id:IdPd,qty:qty,color:idColor,size:idSize},
+		  				beforeSend:function(){
+		  					self.text('Adding To Cart ...');
+		  				},
+		  				success: function(result){
+							self.text('ADD SUCCESS');
+							result = $.trim(result);
+							if(result === 'OK') {
+								alert('add cart successful');
+							} else {
+								alert('can not add cart');
+							}
 						}
-					}
-	  			})
-	  		}
+		  			})
+		  		}
+		  	}
 		});
 	</script>
+	{{-- <script type="text/javascript">
+		$(document).ready(function(){
+			if($('.sizeNull').val="Sản phẩm này không có size"){
+				$('.sizeNullNone').css('display','none');
+			}
+			if($('.colorNull')){
+				$('.colorNullNone').css('display','none');
+			}
+			
+		});
+	</script> --}}
 	<script type="text/javascript" src="{{asset('js/scroll.js')}}"></script>
 @endpush

@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-	<form action="{{route('admin.hanldeAddProduct')}}" method="POST" enctype="multipart/form-data">
+	<form action="{{route('admin.hanldeAddProduct')}}" method="POST" enctype="multipart/form-data" class="pt-5">
 		@csrf
 		<div class="row">
 				@if ($errors->any())
@@ -27,7 +27,7 @@
 					    <div class="form-group col-md-9 col-12 float-left">
 					    	<h4 class="pl-4 text-danger">Categories</h4>
 					    	@foreach($categories as $key => $item)
-					    		<div class="col-3 float-left
+					    		<div class="col-12 col-sm-12 sol-md-3 float-left
 					    		">
 							      	<label for="{{ $item['name_categories'] }}">{{ $item['name_categories'] }}</label>
 							      	<input type="radio" class="float-right mr-5" id="{{ $item['name_categories'] }}" name="cate" value="{{ $item['id'] }}" >
@@ -46,17 +46,8 @@
 						 </div>
 				  <div class="form-group col-md-4 col-12 float-left">
 				  	<h4 class="pl-4 text-danger">Color</h4>
-				  	<div class="col-md-3 pl-5 col-12">
-					  	@foreach($color as $key =>$item)
-				
-								  <input class="form-check-input" type="checkbox" name="color[]" id="{{ $item['name_color'] }}" value="{{ $item['id'] }}" multiple >
-
-								  <label class="form-check-label" for="{{ $item['name_color'] }}" style="width: 100%">
-								    {{ $item['name_color'] }}
-								  </label>
-							
-						@endforeach
-					</div>
+				  	<p class="text-danger">(Lưu ý : Mỗi màu cách nhau 1 dấu phẩy ",")</p>
+				  	<input type="text" name="color">
 				  </div>
 				  
 
@@ -153,7 +144,7 @@
 
 						<textarea class="pl-5" name="description"></textarea>
 					</div>
-				    <div class="form-group col-md-4 pl-5 col-12">
+				    <div class="form-group col-md-6 pl-5 col-12">
 				      	<h4 class="pl-4 text-danger">Status</h4>
 				      	<div class="form-check">
 						  <input class="form-check-input" type="radio" name="status" id="status_1" value="1">
@@ -171,25 +162,8 @@
 						</div>
 				    </div>
 				  
-				  	<div class="form-group col-md-4 pl-5 col-12 ">
-				      	<h4 class="text-danger">New</h4>
-				      	<div class="form-check">
-						  <input class="form-check-input" type="radio" name="new" id="new_1" value="1"> 
-						  <label class="form-check-label" for="new_1">
-						    1
-						  </label>
-						</div>
 
-
-						<div class="form-check">
-							  <input class="form-check-input" type="radio" name="new" id="new_2" value="0">
-							  <label class="form-check-label" for="new_2">
-							    0
-							  </label>
-						</div>
-				    </div>
-
-				    <div class="form-group col-md-4 pl-5 col-12 ">
+				    <div class="form-group col-md-6 pl-5 col-12 ">
 				      	<h4 class="text-danger">Highlight</h4>
 				      	<div class="form-check">
 						  <input class="form-check-input" type="radio" name="highlight" id="highlight_1" value="1">

@@ -69,7 +69,7 @@
 
 				    		<td>
 				    			<p>
-				    				{{number_format($item->price - (($item->price * $item->options['sale'])/100)) * $item->qty}}.000VNĐ
+				    				{{ ($item->price - (($item->price * $item->options['sale'])/100)) * $item->qty}}.000VNĐ
 				    			</p>
 				    			
 				    		</td>

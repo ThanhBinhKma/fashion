@@ -82,9 +82,7 @@
 
 						</div>
 					</div>
-					<div class="row">
-					   {{ $linkNew->appends(request()->query())->links() }}
-					</div>
+					
 
 					<div class="row product-content pt-3">
 						<h3>Sản Phẩm Hot</h3>

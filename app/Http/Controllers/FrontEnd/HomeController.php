@@ -7,8 +7,8 @@ use App\Http\Requests\CheckFormSearch;
 use App\Http\Controllers\Controller;
 use App\Model\Product;
 use App\Model\ParentCategories;
-use App\Model\Color;
 use App\Model\Categories;
+use Mail;
 class HomeController extends Controller
 {
     public function index(Product $pr,ParentCategories $parent)
@@ -19,12 +19,11 @@ class HomeController extends Controller
     	$productNew = $pr->GetAllProductNew();
 
     	$arrNew = $productNew->toArray();
-        
-    	$data['productNew'] = $arrNew['data'];
+        // dd($arrNew);
+    	$data['productNew'] = $arrNew;
     	foreach($data['productNew'] as $key =>$item){
     		$data['productNew'][$key]['url_image'] = json_decode($item['url_image'],true);
     	}
-    	$data['linkNew'] = $productNew;
 
     	/********* Hot ************/
 
@@ -33,6 +32,7 @@ class HomeController extends Controller
     	foreach($data['productHot'] as $key =>$item){
     		$data['productHot'][$key]['url_image'] = json_decode($item['url_image'],true);
     	}
+
 
     	/************* Parent Name Product **************/
 
@@ -53,18 +53,19 @@ class HomeController extends Controller
         return view('front-end.home.introduce');
     }
 
-    public function detail($id,Product $pd,Color $color,Categories $cate,ParentCategories $parent)
+    public function detail($id,Product $pd,Categories $cate,ParentCategories $parent)
     {
             $data = [];
             $info = $pd->GetAllDataProductsById($id);
             $idCate = $info['categories_id'];
+            $data['color'] = explode(',',$info['color']);
+            // dd($data['color']);
             $data['info'] = $info;
-            $arr = json_decode($info['color_id'],true);
             $data['infoSize'] = json_decode($info['size'],true);
             $data['infoImage'] = json_decode($info['url_image'],true);
+
             // dd($arr);
-            $color = $color->getAllDataColorById($arr);
-            $data['color']=$color->toArray();
+        
             // dd($color);
             // dd($idParent);
 
@@ -207,5 +208,27 @@ class HomeController extends Controller
                 return view('front-end.home.search',$data);
             }
             }        
+    }
+
+    public function sendContact(Request $req)
+    {
+        $name = $req->name;
+        $email= $req->email;
+        $phone = $req->phone;
+        $message = $req->message;
+        // dd($message);
+        $data =[
+            'name' => $name,
+            'email' =>$email,
+            'phone' => $phone,
+            'tinnhan' => $message
+        ];
+
+        // dd($data);
+        Mail::send('front-end.email.blank',$data,function($mes){
+            $mes->from('Thanhbinhkma27@gmail.com','ThanhBinh');
+            $mes->to('thanhbinhshop27@gmail.com','thanhBinh')->subject('Feeback');
+        });
+        return view('front-end.home.tkscontact');
     }
 }

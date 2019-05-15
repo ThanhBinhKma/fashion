@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="{{asset('css/main.css')}}">
 	<script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+	
 	@yield('style')
 	{{-- Nhung doan code css nam trong file view con se duoc hien thi o day --}}
 	@stack('css')
