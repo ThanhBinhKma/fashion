@@ -226,6 +226,10 @@
 							<br>
 						  	<input type="checkbox" id="33" name="size[]" value='33' multiple>
 						  	<label for="33">33</label>
+
+						  	<br>
+						  	<input type="checkbox" id="freeSize" name="size[]" value='freeSize' multiple>
+						  	<label for="freeSize">freeSize</label>	
 						  	
 					  	</div>
 					@endif

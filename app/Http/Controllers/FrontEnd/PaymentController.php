@@ -22,42 +22,44 @@ class PaymentController extends Controller
     	return view('front-end.payment.index',$data);
     }
 
-    public function PayOrder(Request $req,Payment $pay)
+    public function PayOrder(Request $req,Payment $pay,$id)
     {
-        $fullname = $req->username;
-        $email = $req->email;
-        $phone = $req->phone;
-        $address = $req->address;
-        $note = $req->note;
 
         $infoPd = Cart::content();
-        // dd($infoPd);
-        $dataInsert = [
-            'fullname' => $fullname,
-            'email' => $email,
-            'phone' =>$phone,   
-            'address' => $address,
-            'note' => $note,
-            'infoPd' => json_encode($infoPd,true),
-            'status' => 0,
-            'created_at'=>date('Y:m:d H:i:s'),
-            'updated_at'=>null
-        ];
+        // $tt = json_decode($infoPd,true);
+        // $ddd  = substr($tt, 86,2);
+        // foreach ($tt as $item) {
+        //     $ee[] = $item['id'];
+        //     $ff[]=$item['qty'];
+        // }
+        // dd($ee);
+        // dd($tt);
         if($infoPd){
-            $up = $pay->InsertDataPayment($dataInsert);
-            if($up){
+            $pay = Payment::create([
+                'user_id'=> $id,
+                'note' => $req->note,
+                'infoPd' =>json_encode($infoPd,true),
+                'created_at'=>date('Y:m:d H:i:s'),
+                'updated_at'=>null,
+            ]);
+            
+            
+            if($pay){
                 Cart::destroy();
-                return redirect()->route('payment',['state' => 'success']);
-            }else{
-                return redirect()->route('payment',['state' => 'error']);
+                return redirect()->route('home');
             }
         }else{
-            return redirect()->route('payment',['state' => 'fail']);
+            return redirect()->route('showCart');
         }
         
+        
     }
-    public function BuyNow(Request $req,Product $pd)
+
+    public function order(Request $req,$id)
     {
-        $name = $req->
+        $data['aaa'] = Payment::where('user_id',$id)->get()->toArray();
+        $ddd['bbbe']=$data['aaa']['infoPd'];
+        dd($ddd['bbbe']);
+        return view('front-end.cart.status',$data);
     }
 }

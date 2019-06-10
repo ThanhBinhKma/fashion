@@ -77,38 +77,41 @@
 					  	<label for="XXL">XXL</label>
 				  	</div>
 				  	<div class="col-3 pl-5 float-left">
-					  	<input type="checkbox" id="XS" name="size[]" value='25' multiple>
-					  	<label for="XS">25</label>
+					  	<input type="checkbox" id="25" name="size[]" value='25' multiple>
+					  	<label for="25">25</label>
 					  	<br>
 
-					  	<input type="checkbox" id="S" name="size[]" value='26' multiple>
-					  	<label for="S">26</label>
+					  	<input type="checkbox" id="26" name="size[]" value='26' multiple>
+					  	<label for="26">26</label>
 						<br>
-					  	<input type="checkbox" id="M" name="size[]" value='27' multiple>
-					  	<label for="M">27</label>
+					  	<input type="checkbox" id="27" name="size[]" value='27' multiple>
+					  	<label for="27">27</label>
 					  	<br>
 
-					  	<input type="checkbox" id="L" name="size[]" value='28' multiple>
-					  	<label for="L">28</label>
+					  	<input type="checkbox" id="28" name="size[]" value='28' multiple>
+					  	<label for="28">28</label>
 					  	<br>
 
-					  	<input type="checkbox" id="XL" name="size[]" value='29' multiple>
-					  	<label for="XL">29</label>
+					  	<input type="checkbox" id="29" name="size[]" value='29' multiple>
+					  	<label for="29">29</label>
 					  	<br>
 
-					  	<input type="checkbox" id="XXL" name="size[]" value='30' multiple> 
-					  	<label for="XXL">30</label>
+					  	<input type="checkbox" id="30" name="size[]" value='30' multiple> 
+					  	<label for="30">30</label>
 				  	</div>
 				  	<div class="col-3 pl-5 float-left">
-					  	<input type="checkbox" id="XS" name="size[]" value='31' multiple>
-					  	<label for="XS">31</label>
+					  	<input type="checkbox" id="31" name="size[]" value='31' multiple>
+					  	<label for="31">31</label>
 					  	<br>
 
-					  	<input type="checkbox" id="S" name="size[]" value='32' multiple>
-					  	<label for="S">32</label>
+					  	<input type="checkbox" id="32" name="size[]" value='32' multiple>
+					  	<label for="32">32</label>
 						<br>
-					  	<input type="checkbox" id="M" name="size[]" value='33' multiple>
-					  	<label for="M">33</label>
+					  	<input type="checkbox" id="33" name="size[]" value='33' multiple>
+					  	<label for="33">33</label>
+					  	<br>
+						  	<input type="checkbox" id="freeSize" name="size[]" value='freeSize' multiple>
+						  	<label for="freeSize">freeSize</label>
 					  	
 				  	</div>
 				  </div>

@@ -98,7 +98,7 @@
 </div>
 @endsection
 
-@section('script')
+@section('javascript')
   <script type="text/javascript">
     $.ajaxSetup({
       headers: {

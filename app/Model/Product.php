@@ -78,8 +78,8 @@ class Product extends Model
     public function GetAllProductNew()
     {
         $data = Product::select('*')
-                    ->orderByRaw('created_at')
-                    ->take(5)
+                    ->orderBy('created_at','desc')
+                    ->take(8)
                     ->get();
         return $data;
     }

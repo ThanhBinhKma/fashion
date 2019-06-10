@@ -30,11 +30,11 @@ header{
 }
 header .lienhe{
 	background: #333333;
-	height: 30px;
+	height: 45px;
 }
 header .lienhe .lienhe-left p{
-	line-height: 30px;
-    font-size: 13px;
+	line-height: 45px;
+    font-size: 17px;
     color: white;
 }
 header .lienhe .lienhe-left p i{
@@ -42,18 +42,34 @@ header .lienhe .lienhe-left p i{
 }
 header .lienhe .lienhe-right ul li{
 	list-style-type: none;
-	font-size: 14px;
-	padding-right: 10px;
-	display: inline-block;
-	line-height: 30px;
-	
+    font-size: 0px;
+    padding-right: 10px;
+    display: inline-block;
+    line-height: 45px;
+    color: #ffffff;
 }
-header .lienhe .lienhe-right ul li a{
-	color: #ffff;
-	text-decoration: none;
+div.dropdown{
+	line-height: 45px;
 }
-header .lienhe .lienhe-right ul li i{
-	padding-right: 5px;
+div.dropdown button{
+	background-color: unset;
+}
+div.dropdown-menu{
+	position: absolute;
+    will-change: transform;
+    top: 0% !important;
+    left: -15% !important;
+    height: auto !important;
+    width: 60% !important ;
+    transform: translate3d(0px, 5px, 0px);
+    z-index: 8888888888888888888888888888888;
+}
+div.dropdown-menu a{
+	border-bottom: 1px solid #cdcfd3;
+	text-align: center;
+}
+div.dropdown-menu a:last-of-type{
+	border: none;
 }
 		/*End lienhe*/
 
@@ -82,6 +98,45 @@ header .logo .logo-right .row-tren ul li i{
     color: #7dc03d;
     font-size: 30px;
 }
+ul.ul-cha,ul.ul-con{
+	list-style: none;
+	padding-left: 0 !important;
+}
+li.li-cha,li.li-con{
+	text-align: center;
+	width: 100%;
+}
+li.li-con{
+	display: none;
+}
+li.li-con a{
+	color: #ffff;
+	text-decoration: none;
+}
+li.li-con a:hover{
+	color: #53f442;
+}
+ul.ul-cha{
+	width: 70%;
+	height: 150px;
+	color: #ffff;
+}
+li.li-con{
+	line-height: 30px;
+	border-bottom: 1px solid #e3e3e3e3;
+}
+ul.ul-con{
+	display: none;
+	background-color: #ff5400;
+	position: absolute;
+	z-index: 8555474222545;
+	width: 50%;
+	left: 15%;
+}
+/*ul.ul-cha{
+	padding-left: 15px !important;
+
+}*/
 
 .row .row-duoi {
     /* line-height: 60px; */
@@ -186,7 +241,9 @@ ul.sub-menu-ul{
 #hover-hien:hover ul.sub-menu-ul{
 	opacity: 1;
 }
-
+.ipSearch{
+	height: 35px;
+}
 
 ul.sub-menu-ul{
 	display: none;

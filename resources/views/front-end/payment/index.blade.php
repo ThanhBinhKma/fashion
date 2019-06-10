@@ -59,23 +59,23 @@
 				    		</td>
 
 				    		<td>
-				    			<input type="number" id="qty_{{$key}}" value="{{$item->qty}}">
+				    			<input type="number" id="qty_{{$key}}" value="{{$item->qty}}" readonly="readonly">
 				    			
 				    		</td>
 
 				    		<td>
-				    			{{ $item->price - (($item->price * $item->options['sale'])/100) }}.000VNĐ	
+				    			{{ (int)($item->price - (($item->price * $item->options['sale'])/100)) }}.000VNĐ	
 				    		</td>
 
 				    		<td>
 				    			<p>
-				    				{{ ($item->price - (($item->price * $item->options['sale'])/100)) * $item->qty}}.000VNĐ
+				    				{{ (int)(($item->price - (($item->price * $item->options['sale'])/100)) * $item->qty)}}.000VNĐ
 				    			</p>
 				    			
 				    		</td>
 				    		@php
 				    			$i++;
-				    			$total += ($item->price - (($item->price * $item->options['sale'])/100)) * $item->qty;
+				    			$total += (int)($item->price - (($item->price * $item->options['sale'])/100)) * $item->qty;
 				    		@endphp
 				    	</tr>
 				    @endforeach
@@ -90,38 +90,28 @@
 				  		</td>
 				  		
 				  	</tr>
+				  	<tr>
+
+				  		
+				  			<form action="{{route('paymentOrder',['id'=>Auth::user()->id])}}" method="POST">
+				  				@csrf
+				  				<td colspan="4">
+				  					<div class="form-group">
+					  					<label for="address" class="label-contact" >Ghi Chú :</label>
+										<textarea class="form-control" name="note" id="address"></textarea>
+									</div>
+				  				</td>
+				  				<td colspan="4">
+				  					<button class="btn btn-block btn-success mt-5">Xác Nhận</button>
+				  				</td>
+				  				
+				  			</form>
+				  		
+				  	</tr>
 				  </tfoot>
 				</table>
 			</div>
-			<div class="col-md-12 col-lg-12">
-
-				<h2 class="text-centerxt">Infomation customer</h2>
-
-				<form action="{{route('paymentOrder')}}" method="POST">
-					@csrf
-					<div class="form-group">
-						<label for="username" class="label-contact" >(*) Fullname</label>
-						<input type="text" class="form-control" name="username" id="username">
-					</div>
-					<div class="form-group">
-						<label for="email" class="label-contact" >(*) Email</label>
-						<input type="email" class="form-control" name="email" id="email">
-					</div>
-					<div class="form-group">
-						<label for="phone" class="label-contact" >(*) Phone</label>
-						<input type="text" class="form-control" name="phone" id="phone">
-					</div>
-					<div class="form-group">
-						<label for="address" class="label-contact" >(*) Address</label>
-						<textarea class="form-control" name="address" id="address"></textarea>
-					</div>
-					<div class="form-group">
-						<label for="note" class="label-contact" >Note</label>
-						<textarea class="form-control" name="note" id="note"></textarea>
-					</div>
-					<button class="btn btn-primary btn-block" type="submit">Pay</button>
-				</form>
-			</div>
+			
 		</div>
 	</section>
 @endsection

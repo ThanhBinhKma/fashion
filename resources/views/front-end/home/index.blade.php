@@ -54,7 +54,7 @@
 					
 					<div class="row product-main">
 						<div class="container-fluid">
-							<div class="row">
+							<div class="row"> 
 								@foreach($productNew as $key =>$item)
 									<div class="col-12 col-sm-4 col-md-3 col-sm-p sha-dow">
 										<div class="product-size">

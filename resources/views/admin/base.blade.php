@@ -40,7 +40,7 @@
               <a href="{{route('admin.bill')}}">Bill</a>
             </li>
             <li>
-              <a href="{{route('admin.logout')}}">Log Out</a>
+              <a href="{{route('dangxuat')}}">Log Out</a>
             </li>
           </ul>
           <nav class="menu-drop-right lap-none">
@@ -55,7 +55,7 @@
                                   <li><a href="{{route('admin.brand')}}">Brand</a></li>
                                   <li><a href="{{route('admin.categories')}}" >Categories</a></li>
                                   <li><a href="{{route('admin.bill')}}" >Bill</a></li>
-                                  <li><a href="{{route('admin.logout')}}" >Log out</a></li>
+                                  <li><a href="{{route('dangxuat')}}" >Log out</a></li>
                         </ul>
                     </nav>
               

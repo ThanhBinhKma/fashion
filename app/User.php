@@ -5,9 +5,9 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
-class User extends Authenticatable
-{
+use Illuminate\Support\Facades\DB;
+class User extends Authenticatable implements MustVerifyEmail
+{ 
     use Notifiable;
 
     /**
@@ -15,8 +15,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'users';
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','address', 'role', 'status', 'avatar', 'ngaysinh',
     ];
 
     /**
@@ -36,4 +37,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function InsertDataByUser($data)
+    {
+        $up = User::insert($data);
+        if($up){
+            return true;
+        }
+        return false;
+    }
 }

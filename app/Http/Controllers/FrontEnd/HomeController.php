@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Model\Product;
 use App\Model\ParentCategories;
 use App\Model\Categories;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 use Mail;
 class HomeController extends Controller
 {
@@ -35,7 +37,6 @@ class HomeController extends Controller
 
 
     	/************* Parent Name Product **************/
-
     	return view('front-end.home.index',$data);
     }
     function __construct(ParentCategories $parent)
@@ -43,6 +44,7 @@ class HomeController extends Controller
         $nameParent = $parent->NameParent();
         view()->share('nameParent',$nameParent);
     }
+
 
     public function contact()
     {
@@ -58,10 +60,20 @@ class HomeController extends Controller
             $data = [];
             $info = $pd->GetAllDataProductsById($id);
             $idCate = $info['categories_id'];
-            $data['color'] = explode(',',$info['color']);
-            // dd($data['color']);
+            
+            if($info['color']){
+                $data['color'] = explode(',',$info['color']);
+            }else{
+                $data['color'] = null;
+            }
+            
+          
             $data['info'] = $info;
-            $data['infoSize'] = json_decode($info['size'],true);
+            if($info['size']){
+                $data['infoSize'] = json_decode($info['size'],true);
+            }else{
+                $data['infoSize'] = null;
+            } 
             $data['infoImage'] = json_decode($info['url_image'],true);
 
             // dd($arr);

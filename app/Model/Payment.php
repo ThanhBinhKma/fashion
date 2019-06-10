@@ -9,18 +9,18 @@ class Payment extends Model
     
     protected $table = 'orders';
 
-    public function InsertDataPayment($data)
-    {
-    	$data =$arr = DB::table('orders')->insert($data);
-    	if($data){
-    		return true;
-    	}
-    	return false;
+    protected $fillable = [
+        'user_id', 'note', 'infoPd', 'status'
+    ];
 
+    public function User()
+    {
+        return $this->hasOne('App\User');
     }
-    public function GetAllData()
+     public function GetAllData()
     {
     	$data = Payment::select('*')->paginate(5);
     	return $data;
     }
+    
 }

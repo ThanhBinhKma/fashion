@@ -19,42 +19,39 @@
     <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Full Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Address</th>
-          <th scope="col">Note</th>
-          <th scope="col">Info Product</th>
-          <th scope="col">Status</th>
+          <th scope="col">ID Người Dùng</th>
+          <th scope="col">Ghi Chú</th>
+          <th scope="col">ID Sản Phẩm</th>
+          <th scope="col">Trạng thái</th>
         </tr>
     </thead>
     <tbody>
       @foreach($infoPay as $key =>$item)
         <tr id="">
           <td>{{$item['id']}}</td>
-          <td>{{$item['fullname']}}</td>
-          <td>{{$item['email']}}</td>
-          <td>{{$item['phone']}}</td>
-          <td>{{$item['address']}}</td>
+          <td>{{$item['user_id']}}</td>
           <td>{{$item['note']}}</td>
           <td>
             
             @foreach($item['infoPd'] as $k =>$val)
-              <p>{{$val['id']}}</p>
-              <p>{{$val['name']}}</p>
+              <p>{{$k}}</p>
+             {{--  <p>{{$val['name']}}</p>
               <p>{{$val['qty']}}</p>
               <p>{{$val['options']['color']}}</p>
               <p>{{$val['options']['size']}}</p>
-              <p>{{$val['options']['sale']}}</p>
+              <p>{{$val['options']['sale']}}</p> --}}
             @endforeach
           </td>
           <td>{{$item['status']}}</td>
           <td>
-            <button class="btn btn-danger btn-delete" id="">Delete</button>
+            <a href="{{route('admin.detailBill' , ['id' =>$item['id']])}}" class="btn btn-danger ">Chi tiết</a>
           </td>
-
           <td>
-            <a href="#" class="btn btn-danger">Edit</a>
+            <button class="btn btn-danger btn-delete" id="">Xóa</button>
+          </td>
+          
+          <td>
+            <a href="#" class="btn btn-danger">Sửa</a>
           </td>
         </tr>
       @endforeach

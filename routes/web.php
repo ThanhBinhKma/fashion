@@ -14,28 +14,44 @@
 
 
 /************************** Admin ************************/
-
+Auth::routes();
+Auth::routes(['verify' => true]); 
 Route::group([
-	'prefix'=>'admin',
-	// prefix : link
-	'as'=>'admin.',
-	// as:name
-	'namespace'=>'Admin',
-	// 'middleware'=>['checkLogin','web']
-	//namespace
-
+	'namespace'=>'Admin' 
 ],function(){
-	Route::get('login','LoginController@index')->name('login');
+	Route::get('dang-nhap','LoginController@index')->name('DangNhap');
 	Route::post('hanlde-login','LoginController@handleLogin')->name('handleLogin');
-	Route::get('logout','LoginController@logout')->name('logout');
+	Route::get('/dang-xuat','LoginController@logout')->name('dangxuat');
+	Route::get('/dang-ky','LoginController@signin')->name('dangky');
+	Route::post('/handle-dang-ky','LoginController@handleSignin')->name('handleDangky');
+	Route::post('/xac-nhan-email','LoginController@verify')->name('VerifyE');
+	Route::get('/xac-nhan-email/{id}','LoginController@reVerify')->name('recodeverifi');
+
+	Route::get('/quen-mat-khau','LoginController@forgot')->name('forgot');
+
+	Route::post('/gui-email','LoginController@confirmMail')->name('confirmMail');
+
+	Route::post('/xac-nhan-email','LoginController@confirmPass')->name('confirmPass');
+	Route::post('/thay-doi-mat-khau/{id}','LoginController@changePass')->name('changePass');
+
+	Route::get('/gui-xac-nhan-email/{id}','LoginController@recodepas')->name('recodepas');
+
+
+
+	
+
+
+	Route::get('facebook/redirect', 'LoginController@redirectToProvider')->name('fb');
+	Route::get('facebook/callback', 'LoginController@handleProviderCallback');
 	
 });
 
+
 Route::group([
 	'prefix'=>'admin',
 	'as'=>'admin.',
 	'namespace'=>'Admin',
-	'middleware'=>['checkLogin','web']
+	'middleware'=>'auth',
 ],function(){
 	Route::get('dashboard','DashBoardController@index')->name('dashboard');
 			/**** Product **********/
@@ -62,6 +78,8 @@ Route::group([
 	Route::post('handle-edit-categories/{id}','CategoriesController@handleEdit')->name('handleEditCategories');
 	/********* Bill *************/
 	Route::get('bill','BillController@index')->name('bill');
+	Route::get('bill-detail/{id}','BillController@detailBill')->name('detailBill');
+	
 });
 
 /*************************** Front-end ***********************************/
@@ -72,7 +90,7 @@ Route::group([
 Route::group([
 	'namespace'=>'FrontEnd'
 ],function(){
-	Route::get('/','HomeController@index')->name('home');
+	Route::get('','HomeController@index')->name('home');
 	Route::get('lien-he','HomeController@contact')->name('contact');
 
 	Route::post('gui-lien-he','HomeController@sendContact')->name('sentContact');
@@ -90,20 +108,20 @@ Route::group([
 	Route::post('search','HomeController@search')->name('search');
 	/******************** Cart *********************/
 
-});
+}); 
 
 Route::group([
-	'namespace'=>'FrontEnd'
+	'namespace'=>'FrontEnd',
+	'middleware'=>'auth',
 ],function(){
 	Route::POST('cart','CartController@cart')->name('Cart');
 	Route::get('show-cart','CartController@showCart')->name('showCart');
 	Route::POST('delete-cart','CartController@deleteCart')->name('deleteCart');
 	Route::POST('update-cart','CartController@updateCart')->name('updateCart');
+
+	Route::get('payment','PaymentController@index')->name('payment');
+	Route::post('payment-order/{id}','PaymentController@PayOrder')->name('paymentOrder');
+
+	Route::get('don-hang/{id}','PaymentController@order')->name('donhang');
 });
 
-Route::group([
-	'namespace'=>'FrontEnd'
-],function(){
-	Route::get('payment','PaymentController@index')->name('payment');
-	Route::post('payment-order','PaymentController@PayOrder')->name('paymentOrder');
-});

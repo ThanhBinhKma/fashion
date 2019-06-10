@@ -25,21 +25,22 @@
 				<table class="table">
 				  <thead>
 				    <tr>
-				      <th scope="col">#</th>
-				      <th scope="col">Name</th>
-				      <th scope="col">Color</th>
-				      <th scope="col">Size</th>
-				      <th scope="col">Image</th>
-				      <th scope="col">Quantity</th>
-				      <th scope="col">Price</th>
-				      <th scope="col">Money</th>
+				    <th scope="col">Hình ảnh</th>
+				      <th scope="col">Tên sản phẩm</th>
+				      <th scope="col">Màu sắc</th>
+				      <th scope="col">Kích thước</th>
+				      
+				      <th scope="col">Số lượng</th>
+				      <th scope="col">Giá tiền</th>
 					  <th scope="col"></th>
 				    </tr>
 				  </thead>
 				  <tbody>
 				    @foreach($cart as $key =>$item)
 				    	<tr>
-				    		<td>{{$key}}</td>
+				    		<td>
+				    			<img src="{{URL::to('/')}}/upload/image/{{$item->options['images'][0]}}" width="100px" height="100px"  alt="">
+				    		</td>
 				    		<td>{{$item->name}}</td>
 				    		<td>
 				    			{{$item->options['color']}}
@@ -47,43 +48,38 @@
 				    		<td>
 				    			{{$item->options['size']}}
 				    		</td>
-				    		<td>
-				    			<img src="{{URL::to('/')}}/upload/image/{{$item->options['images'][0]}}" width="100px" height="100px"  alt="">
-				    		</td>
+				    		
 
 				    		<td>
 				    			<input type="number" id="qty_{{$key}}" value="{{$item->qty}}">
 				    			
 				    		</td>
 
-				    		<td>
-				    			{{ $item->price - (($item->price * $item->options['sale'])/100) }}.000VNĐ	
-				    		</td>
 
 				    		<td>
 				    			<p>
-				    				{{( $item->price - (($item->price * $item->options['sale'])/100)) * $item->qty}}.000VNĐ
+				    				{{( (int)($item->price - (($item->price * $item->options['sale'])/100)) )* $item->qty}}.000VNĐ
 				    			</p>
 				    			
 				    		</td>
 				    		<td>
-				    			<button class="btn btn-danger delete-cart" id="{{$key}}">DELETE</button>
+				    			<button class="btn btn-danger delete-cart" id="{{$key}}">X</button>
 
-				    			<button class="btn btn-success update-cart" id="{{$key}}">UPDATE</button>
+				    			<button class="btn btn-success update-cart" id="{{$key}}">+</button>
 				    		</td>
 				    	</tr>
 				    @endforeach
 				  </tbody>
 				  <tfoot>
 				  	<tr>
-				  		<td colspan="7">
+				  		<td colspan="5">
 				  			
 				  		</td>
 				  		<td>
-				  			<a href="{{route('home')}}" class="btn btn-primary ">Shopping</a>
+				  			<a href="{{route('home')}}" class="btn btn-primary ">Mua sắm</a>
 				  		</td>
 				  		<td>
-				  			<a href="{{route('payment')}}" class="btn btn-primary">Payment</a>
+				  			<a href="{{route('payment')}}" class="btn btn-primary">Thanh toán</a>
 				  		</td>
 				  	</tr>
 				  </tfoot>
@@ -115,16 +111,16 @@
 						type:"POST",
 						data:{id:rowId},
 						beforeSend:function(){
-							self.text('Loading Delete ...');
+							self.text('Đang Xóa ...');
 						},
 						success:function(result){
 							self.text('Delete');
 							result = $.trim(result);
 							if(result==='OK'){
-								alert('Delete Success');
+								alert('Xóa Thành công');
 								window.location.reload(true);
 							}else{
-								alert('Delete Fail');
+								alert('Xóa thất bại');
 							}
 
 						}
@@ -136,22 +132,21 @@
 				let self = $(this);
 				let rowId= self.attr('id').trim();
 				let qty = $('#qty_'+rowId).val().trim();
-				alert(qty);
 				$.ajax({
 					url: "{{ route('updateCart') }}",
 					type:"POST",
 					data: {id: rowId, qty: qty},
 					beforeSend: function(){
-						self.text('Loading ...');
+						self.text('Đang cập nhật...');
 					},
 					success: function(result){
 						self.text('Upate');
 						result = $.trim(result);
 						if(result === 'OK'){
-							alert('upate successfull');
+							alert('Cập nhật thành công');
 							window.location.reload(true);
 						} else {
-							alert('upate fail');
+							alert('Cập nhật thất bại');
 						}
 					}
 				});

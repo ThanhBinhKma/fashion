@@ -70,7 +70,7 @@ class ProductController extends Controller
                 $exFile = $item->getClientOriginalExtension();
                  
                 if(in_array($exFile, $extension)){
-                    $item->move(public_path().'/upload/image',$name_file);
+                    $item->move('upload/image',$name_file);
                     $arrNameFile[] = $name_file;
                     // $arrNameFile=json_encode($arrNameFile);
                    
@@ -182,7 +182,7 @@ class ProductController extends Controller
                   $exFile = $item->getClientOriginalExtension();
                    
                   if(in_array($exFile, $extension)){
-                      $item->move(public_path().'/upload/image',$name_file);
+                      $item->move('upload/image',$name_file);
                       $arrNameFile[] = $name_file;
                       // $arrNameFile=json_encode($arrNameFile);           
                   }
@@ -193,11 +193,10 @@ class ProductController extends Controller
             $dataUpdate = [
                 'name'=>$name,
                 'brand_id'=>$brands,
-                'color_id'=>json_encode($color),
+                'color'=>$color,
                 
                 'categories_id'=>$cate,
                 'size'=>json_encode($size),
-                'new'=>$new,
                 'price'=>$price,
                 'quantity'=>$qty,
                 'sale_off'=>$saleOff,

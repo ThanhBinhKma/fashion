@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     /*
@@ -35,5 +36,22 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function index()
+    {
+        return view('admin.login.index');
+    }
+    
+    public function handleLogin(Request $req)
+    {
+        $username = $req->username;
+        $pass = $req->pass;
+        // dd($pass);
+
+        // dd(Auth::attempt());
+        $hihi =Auth::attempt(['name'=>$username,'password'=>$pass]);
+        
+        dd($hihi);
     }
 }
