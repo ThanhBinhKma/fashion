@@ -93,7 +93,7 @@ class LoginController extends Controller
         }else{
              return view('front-end.login.register.confirm');
         }
-
+        
     }
 
     public function reVerify($id)

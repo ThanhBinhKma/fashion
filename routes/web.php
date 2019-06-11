@@ -24,7 +24,9 @@ Route::group([
 	Route::get('/dang-xuat','LoginController@logout')->name('dangxuat');
 	Route::get('/dang-ky','LoginController@signin')->name('dangky');
 	Route::post('/handle-dang-ky','LoginController@handleSignin')->name('handleDangky');
-	Route::post('/xac-nhan-email','LoginController@verify')->name('VerifyE');
+
+	Route::post('/xac-nhan-email-hi','LoginController@verify')->name('VerifyE');
+
 	Route::get('/xac-nhan-email/{id}','LoginController@reVerify')->name('recodeverifi');
 
 	Route::get('/quen-mat-khau','LoginController@forgot')->name('forgot');
@@ -79,6 +81,7 @@ Route::group([
 	/********* Bill *************/
 	Route::get('bill','BillController@index')->name('bill');
 	Route::get('bill-detail/{id}','BillController@detailBill')->name('detailBill');
+	Route::get('pdf/{id}','BillController@pdf')->name('pdf');
 	
 });
 
@@ -123,5 +126,6 @@ Route::group([
 	Route::post('payment-order/{id}','PaymentController@PayOrder')->name('paymentOrder');
 
 	Route::get('don-hang/{id}','PaymentController@order')->name('donhang');
+	// Route::get('cap-nhat-thong-tin','DashBoardController@updateProfile')->name('updateProfile');
 });
 

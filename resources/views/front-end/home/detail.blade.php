@@ -145,7 +145,7 @@
 							</div>
 							</div>
 
-							<div class="row pb-5 sizeNullNone">
+							{{-- <div class="row pb-5 sizeNullNone">
 								<div class="col-12 col-md-6">
 									@if($infoSize)
 										<p>Size:</p>
@@ -163,9 +163,9 @@
 								</div>
 								
 							
-							</div>
+							</div> --}}
 							
-							<button class="btn btn-block  btn-success btn-add mr-5" id="btn-ca">Thêm vào giỏ hàng</button>	
+							<button class="btn btn-block  btn-success btn-add mr-5 mt-5" id="btn-ca">Thêm vào giỏ hàng</button>	
 								
 						</div>
 					</div>

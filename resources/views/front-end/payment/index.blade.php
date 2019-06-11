@@ -102,7 +102,7 @@
 									</div>
 				  				</td>
 				  				<td colspan="4">
-				  					<button class="btn btn-block btn-success mt-5">Xác Nhận</button>
+				  					<button class="btn btn-block conf btn-success mt-5">Xác Nhận</button>
 				  				</td>
 				  				
 				  			</form>
@@ -113,8 +113,21 @@
 			</div>
 			
 		</div>
+
 	</section>
 @endsection
 @section('javascript')
+
 	<script type="text/javascript" src="{{asset('js/click-menu.js')}}"></script>
 @endsection
+@push('js')
+	<script type="text/javascript">
+		$('conf').click(function(){
+
+
+		if(Auth::user()->address == null || Auth::user()->address == null ){
+			window.location.replace('{{route('updateProfile')}}');
+		}
+	});
+	</script>
+@endpush

@@ -64,12 +64,6 @@
 					<h6 class="pt-5 pl-4">Phương thức thanh toán : Tiền mặt</h6>
 				</div>
 			</div>
-
-			<div class="row">
-				<div class="col">
-					<a href="{{route('admin.pdf',['id'=>$id])}}" class="pt-3 pr-5 float-right"><i class="fa fa-download" aria-hidden="true"></i></a>
-				</div>
-			</div>
 		</div>
 	</div>
 @endsection

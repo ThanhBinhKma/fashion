@@ -11,4 +11,8 @@ class DashBoardController extends Controller
     {
     	return view('admin.dashboard.index');
     }
+    public function updateProfile()
+    {
+    	return view('admin.dashboard.index');
+    }
 }
